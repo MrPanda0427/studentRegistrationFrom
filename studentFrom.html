@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Register Form</title>
+    <link href="
+       https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<style>
+    tr {
+        border: solid black 2px;
+    }
+
+    .column {
+        padding: 2px;
+        border: solid black 2px;
+        font-weight: bold;
+        padding-left: 5px;
+    }
+
+    td {
+        border: solid black 2px;
+    }
+
+    .actionBtn {
+        background-color: red;
+        color: white;
+        padding: 1px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border: solid gray 1px;
+        width: 100%;
+    }
+
+    input::placeholder {
+        color: white;
+    }
+</style>
+
+<body style="background: linear-gradient(to bottom right, rgba(100, 128, 0, 0.822), rgb(174, 0, 255));">
+
+    <div class="text-center p-8 flex flex-col justify-center items-center gap-4">
+        <form
+            class="text-center p-5 flex flex-col justify-center items-center border border-red-200 w-4/6 rounded-lg bg-white style="
+            style="box-shadow: 0 4px 10px rgba(239, 102, 68, 0.5); background-color: rgba(236, 229, 166, 0.384);">
+            <h1 class="font-bold text-3xl mb-8">STUDENT FORM</h1>
+            <table class="w-full text-left border border-black">
+                <tr>
+                    <td class="column">Name</td>
+                    <td><input id="inputName" class="w-full border border-red-300 rounded bg-transparent text-white"
+                            type="text" placeholder="Enter Your Name"></td>
+                </tr>
+
+                <tr>
+                    <td class="column">Age</td>
+                    <td><input id="inputAge" class="w-full border border-red-300 rounded bg-transparent  text-white"
+                            type="number" placeholder="Enter Your Name"></td>
+                </tr>
+
+                <tr>
+                    <td class="column inputGender">Gender</td>
+                    <td>
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="column">Course</td>
+                    <td>
+                        <select id="inputCourse"
+                            class="w-full border border-red-300 bg-transparent text-white rounded placeholder-white">
+                            <option disabled selected class="text-gray-400 bg-black">-- Select Course --</option>
+                            <option value="JavaScript" class="text-black">JavaScript</option>
+                            <option value="React.js" class="text-black">React.js</option>
+                            <option value="Cyber Security" class="text-black">Cyber Security</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="column">E-mail</td>
+                    <td><input id="inputEmail" class="w-full border border-red-300 bg-transparent rounded  text-white"
+                            type="email" placeholder="Enter Your Gmail"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><button id="save"
+                            class="w-full bg-green-300 border border-black rounded">Save</button></td>
+                </tr>
+            </table>
+        </form>
+
+        <table id="saveData" class="w-full "
+            style="box-shadow: 0 4px 10px rgba(239, 102, 68, 0.5); background-color: rgba(236, 229, 166, 0.384);">
+            <tr>
+                <th id="name" class="column">Name</th>
+                <th id="age" class="column">Age</th>
+                <th id="gender" class="column">Gender</th>
+                <th id="course" class="column">Course</th>
+                <th id="email" class="column">E-mail</th>
+                <th id="action">Action</th>
+            </tr>
+            <!-- <tr>
+                <td>valla</td>
+                <td>34</td>
+                <td>dfaklsd</td>
+                <td>lkadsfjds</td>
+                <td>dklafj</td>
+                <td><button class="actionBtn">Delete</button></td>
+            </tr> -->
+        </table>
+
+    </div>
+
+    <Script>
+        var name = document.getElementById("inputName")
+        var age = document.getElementById("inputAge")
+        var course = document.getElementById("inputCourse")
+        var email = document.getElementById("inputEmail")
+        var save = document.getElementById("save")
+        var saveData = document.getElementById("saveData")
+
+        save.addEventListener("click", function () {
+            event.preventDefault();  //✅ Stop the form from reloading the page!
+
+            // Validate values
+            if (
+                inputName.value.trim() === "" ||
+                inputAge.value.trim() === "" ||
+                !document.querySelector('input[name="gender"]:checked') ||
+                inputCourse.value.trim() === "" ||
+                inputEmail.value.trim() === ""
+            ) {
+                alert("❌ Please fill out all fields before submitting.");
+                return;
+            }
+
+            //Email Validation
+            const emailValue = inputEmail.value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailValue !== "" && !emailPattern.test(emailValue)) {
+                alert("❌ Please enter a valid email address.");
+                return;
+            }
+            //Age Validation
+            const agevalue = inputAge.value.trim();
+           if (agevalue === "" || isNaN(agevalue) || agevalue <= 0 || agevalue > 100) {
+                alert("❌ Please enter a valid");
+                return;
+            }
+            //Createing row
+            var tr = document.createElement("tr")
+            //for Name
+            var tdName = document.createElement("td")
+            tdName.textContent = inputName.value
+            tr.appendChild(tdName)
+
+            //for Age
+            var tdAge = document.createElement("td")
+            tdAge.textContent = inputAge.value
+            tr.appendChild(tdAge)
+
+            //for Gennder
+            var selectedGender = document.querySelector('input[name="gender"]:checked');
+            var tdGender = document.createElement("td");
+            tdGender.textContent = selectedGender ? selectedGender.value : "Not selected";
+            tr.appendChild(tdGender);
+            //for Course
+            var tdCourse = document.createElement("td")
+            tdCourse.textContent = inputCourse.value
+            tr.appendChild(tdCourse)
+            //for Email
+            var tdEmail = document.createElement("td")
+            tdEmail.textContent = inputEmail.value
+            tr.appendChild(tdEmail)
+
+            //for Delete
+            var tdAction = document.createElement("td")
+            var btn = document.createElement("button")
+            btn.textContent = "Delete"
+            btn.className = "actionBtn"
+
+            btn.addEventListener("click", function () {
+                tr.remove();
+            })
+            tdAction.appendChild(btn)
+            tr.appendChild(tdAction)
+            saveData.appendChild(tr);
+
+
+        })
+    </Script>
+</body>
+
+</html>
