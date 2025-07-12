@@ -2,18 +2,23 @@
 
 A stylish, responsive student registration form built with **HTML**, **CSS (Tailwind)**, and **JavaScript**, with real-time form validation and data display.
 
+🌐 **Live Demo**: [Click Here](https://mrpanda0427.github.io/studentRegistrationFrom/)
+
 ---
 
 ## 🎯 Features
 
 - 🔒 Validates form before submission
+- 🚫 Prevents submission if any required field is empty or invalid
 - 🧮 Accepts: Name, Age, Gender, Course, and Email
 - ❌ Rejects empty or invalid inputs
 - 📧 Validates email format 
 - ✅ Age Validatetion
 - 📋 Appends valid entries to a summary table
 - 🗑️ Supports one-click row deletion
+- 🎨 Transparent inputs with placeholder styling
 - 🎨 Beautiful background with maroon-yellow gradient and transparent inputs
+- 💫 Clean UI with gradient maroon-yellow background
 
 ---
 
